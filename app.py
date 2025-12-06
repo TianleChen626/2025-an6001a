@@ -1,7 +1,8 @@
-from flask import Flask, request, render_template
+from flask import Flask,request,render_template
 import joblib
 
-app = Flask( __name__)
+app = Flask(__name__)
+
 @app.route("/",methods=["GET","POST"])
 def index():
     return(render_template("index.html"))
@@ -24,6 +25,9 @@ def dbs_prediction():
     r = model.predict([[q]])
     return(render_template("dbs_prediction.html",r=r[0][0]))
 
+@app.route("/creditability",methods=["GET","POST"])
+def creditability():
+    return(render_template("creditability.html"))
+
 if __name__ == "__main__":
     app.run()
-    
